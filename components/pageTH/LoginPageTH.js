@@ -54,7 +54,7 @@ export default class LoginPageTH extends Component {
               value={this.state.Password}
             />
           </View>
-          <TouchableOpacity onPress={() => Actions.reset("profileTH")}>
+          <TouchableOpacity onPress={() => this.onLogin()}>
             <View style={{alignItems: "center",backgroundColor: "#4050b5",marginTop: 40,marginLeft: 25,marginRight: 25}}>
               <Text style={{ padding: 5, color: "white", fontSize: 20 }}>เข้าสู่ระบบ</Text>
             </View>

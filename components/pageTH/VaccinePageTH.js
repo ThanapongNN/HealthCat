@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListView } from 'react-native';
+import { ListView,StatusBar } from 'react-native';
 import { Container, Header, Content, Button, Icon, List, ListItem, Text, Footer, FooterTab, Body, Title,Thumbnail,Left,Right } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
@@ -20,7 +20,7 @@ export default class VaccinePageTH extends Component {
 
   render() {
     return (
-      <Container>
+      <Container><StatusBar hidden />
         <Header>
           <Body>
             <Title>ฉีดวัคซีน</Title>

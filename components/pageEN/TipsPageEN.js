@@ -27,7 +27,7 @@ export default class TipsPageEN extends Component {
               </Body>
               <Right>
                 <Button transparent onPress={() => Actions.tips01EN()}>
-                  <Text>Read</Text>
+                  <Text style={{fontWeight: 'bold'}}>Read</Text>
                 </Button>
               </Right>
             </ListItem>
@@ -42,7 +42,7 @@ export default class TipsPageEN extends Component {
               </Body>
               <Right>
                 <Button transparent onPress={() => Actions.tips02EN()}>
-                  <Text>Read</Text>
+                  <Text style={{fontWeight: 'bold'}}>Read</Text>
                 </Button>
               </Right>
             </ListItem>
@@ -57,7 +57,7 @@ export default class TipsPageEN extends Component {
               </Body>
               <Right>
                 <Button transparent onPress={() => Actions.tips03EN()}>
-                  <Text>Read</Text>
+                  <Text style={{fontWeight: 'bold'}}>Read</Text>
                 </Button>
               </Right>
             </ListItem>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
+import { Image,StatusBar } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Right, Left, Body, Footer, FooterTab,Title,Segment,List,ListItem } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
@@ -7,7 +7,7 @@ export default class TipsPageTH extends Component {
 
   render() {
     return (
-      <Container>
+      <Container><StatusBar hidden />
         <Header>
           <Body>
             <Title>เคล็ดลับ</Title>
@@ -27,7 +27,7 @@ export default class TipsPageTH extends Component {
               </Body>
               <Right>
                 <Button transparent onPress={() => Actions.tips01TH()}>
-                  <Text>อ่าน</Text>
+                  <Text style={{fontWeight: 'bold'}}>อ่าน</Text>
                 </Button>
               </Right>
             </ListItem>
@@ -42,7 +42,7 @@ export default class TipsPageTH extends Component {
               </Body>
               <Right>
                 <Button transparent onPress={() => Actions.tips02TH()}>
-                  <Text>อ่าน</Text>
+                  <Text style={{fontWeight: 'bold'}}>อ่าน</Text>
                 </Button>
               </Right>
             </ListItem>
@@ -57,7 +57,7 @@ export default class TipsPageTH extends Component {
               </Body>
               <Right>
                 <Button transparent onPress={() => Actions.tips03TH()}>
-                  <Text>อ่าน</Text>
+                  <Text style={{fontWeight: 'bold'}}>อ่าน</Text>
                 </Button>
               </Right>
             </ListItem>
