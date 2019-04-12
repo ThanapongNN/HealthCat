@@ -31,9 +31,9 @@ export default class CatPageTH extends Component {
     return (
       <Container><StatusBar hidden />
         <Header>
-          <Body>
+          <Left>
             <Title>ข้อมูลแมว</Title>
-          </Body>
+          </Left>
           <Right>
             <Button transparent onPress={() => Actions.reset("catEN")}><Text>ไทย</Text></Button>
           </Right>

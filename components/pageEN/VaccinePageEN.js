@@ -22,9 +22,9 @@ export default class VaccinePageEN extends Component {
     return (
       <Container><StatusBar hidden />
         <Header>
-          <Body>
+          <Left>
             <Title>Vaccine</Title>
-          </Body>
+          </Left>
           <Right>
             <Button transparent onPress={() => Actions.addvaccineEN()}>
               <Icon active name="add"/>

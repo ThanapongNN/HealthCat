@@ -9,9 +9,9 @@ export default class TipsPageEN extends Component {
     return (
       <Container><StatusBar hidden />
         <Header>
-          <Body>
+          <Left>
             <Title>Tips</Title>
-          </Body>
+          </Left>
           <Right>
             <Button transparent onPress={() => Actions.reset("tipsTH")}><Text>EN</Text></Button>
           </Right>

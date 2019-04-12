@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { ListView,StatusBar } from 'react-native';
+import { ListView,StatusBar,Alert } from 'react-native';
 import { Container,Header,Content,Footer,FooterTab,Button,Icon,Body,Right,Left,Title,Card,CardItem,Text } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-import { Font, AppLoading } from "expo";
 import axios from 'axios';
 
 export default class ProfilePageEN extends Component {
@@ -24,14 +23,26 @@ export default class ProfilePageEN extends Component {
         console.log(err);
       });
   }
-  
+
+  showAlert = () =>{
+    Alert.alert(
+      'Confirm Logout',
+      '',
+      [
+        {text: 'No',style: 'cancel',},
+        {text: 'Yes', onPress: () => Actions.reset("loginEN")}
+      ],
+      {cancelable: false},
+    );
+  }
+
   render() {
     return (
       <Container><StatusBar hidden />
         <Header>
-          <Body>
+          <Left>
             <Title>Profile</Title>
-          </Body>
+          </Left>
           <Right>
             <Button transparent onPress={() => Actions.reset("profileTH")}><Text>EN</Text></Button>
           </Right>
@@ -39,12 +50,12 @@ export default class ProfilePageEN extends Component {
         <Content>
           {this.state.user.map((row, index) => {
             return (
-              <Card transparent key={index}>
+              <Card key={index}>
                 <Body>
                   <CardItem header>
-                    <Text>{row.name}</Text>
-                    <Button transparent onPress={() => Actions.reset("loginEN")}>
-                      <Icon active name="ios-exit"/>
+                    <Icon active name="md-contact" /><Text>{row.name}</Text>
+                    <Button transparent onPress={() => this.showAlert()}>
+                      <Icon active name="ios-log-out"/>
                     </Button>
                   </CardItem>
                 </Body>

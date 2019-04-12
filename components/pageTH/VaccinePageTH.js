@@ -22,9 +22,9 @@ export default class VaccinePageTH extends Component {
     return (
       <Container><StatusBar hidden />
         <Header>
-          <Body>
+          <Left>
             <Title>ฉีดวัคซีน</Title>
-          </Body>
+          </Left>
           <Right>
             <Button transparent onPress={() => Actions.addvaccineTH()}>
               <Icon active name="add"/>

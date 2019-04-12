@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
-import { Container, Header, Content, Footer, FooterTab, Button, Text, Body,Right, Title, Icon,Card,CardItem } from 'native-base';
+import { Container, Header, Content, Footer, FooterTab, Button, Text, Body,Right,Left,Title,Icon,Card,CardItem } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 export default class ContactPageTH extends Component {
@@ -9,9 +9,9 @@ export default class ContactPageTH extends Component {
     return (
       <Container><StatusBar hidden />
         <Header>
-          <Body>
+          <Left>
             <Title>ติดต่อ</Title>
-          </Body>
+          </Left>
           <Right>
             <Button transparent onPress={() => Actions.reset("contactEN")}><Text>ไทย</Text></Button>
           </Right>

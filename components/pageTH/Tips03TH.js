@@ -24,7 +24,7 @@ export default class Tips03TH extends Component {
               </CardItem>
               <Body>
                 <CardItem>
-                  <Image source={require('../../img/program-TH.png')} style={{ height: 500, width: 400 }}/>
+                  <Image source={require('../../img/program-TH.png')} style={{ height: 500, width: 300 }}/>
                 </CardItem>
               </Body>
             </Card>

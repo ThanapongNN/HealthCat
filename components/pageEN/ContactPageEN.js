@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
-import { Container,Header,Content,Footer,FooterTab,Button,Text,Body,Right,Title,Icon,Card,CardItem } from 'native-base';
+import { Container,Header,Content,Footer,FooterTab,Button,Text,Body,Right,Left,Title,Icon,Card,CardItem } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 
 export default class ContactPageEN extends Component {
@@ -9,9 +9,9 @@ export default class ContactPageEN extends Component {
     return (
       <Container><StatusBar hidden />
         <Header>
-          <Body>
+          <Left>
             <Title>Contact</Title>
-          </Body>
+          </Left>
           <Right>
             <Button transparent onPress={() => Actions.reset("contactTH")}><Text>EN</Text></Button>
           </Right>

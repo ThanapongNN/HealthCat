@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, TextInput, TouchableOpacity, Image,StatusBar } from "react-native";
+import { Text, View, TextInput, TouchableOpacity, Image,StatusBar,Alert,StyleSheet,AsyncStorage } from "react-native";
 import { Button } from 'native-base';
 import { Actions } from "react-native-router-flux";
 import base64 from 'react-native-base64';
@@ -10,7 +10,8 @@ export default class LoginPageEN extends Component {
     super(props);
     this.state = {
       Username: "",
-      Password: ""
+      Password: "",
+      id: []
     };
   }
 
@@ -23,7 +24,14 @@ export default class LoginPageEN extends Component {
       .then(res => {
         console.log(res.data);
         if (!res.data[0]) {
-          alert("Please enter new information");
+          Alert.alert(
+            'Error',
+            'Incorrect username or password.',
+            [
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            {cancelable: false},
+          );
         } else {
           Actions.reset("profileEN");
         }
@@ -44,20 +52,19 @@ export default class LoginPageEN extends Component {
         </View>
         <View style={{ width: "100%", height: "100%", backgroundColor: "white" }}>
           <View style={{width: '100%' }}>
-            <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1,marginTop: 40,marginLeft: 25,marginRight:25}}
-              
-              placeholder=" Username" onChangeText={(Username) => this.setState({Username})}
+            <TextInput style={styles.textbox}
+              placeholder="Username" onChangeText={(Username) => this.setState({Username})}
               value={this.state.Username}
             />
           </View>
           <View style={{width: '100%' }}>
-            <TextInput secureTextEntry={true} style={{ height: 40, borderColor: 'gray', borderWidth: 1,marginTop: 10,marginLeft: 25,marginRight:25}}
-              placeholder=" Password" onChangeText={(Password) => this.setState({Password})}
+            <TextInput secureTextEntry={true} style={styles.textbox}
+              placeholder="Password" onChangeText={(Password) => this.setState({Password})}
               value={this.state.Password}
             />
           </View>
           <TouchableOpacity onPress={() => this.onLogin()}>
-            <View style={{alignItems: "center",backgroundColor: "#4050b5",marginTop: 40,marginLeft: 25,marginRight: 25}}>
+            <View style={styles.button}>
               <Text style={{ padding: 5, color: "white", fontSize: 20 }}>Login</Text>
             </View>
           </TouchableOpacity>
@@ -66,3 +73,23 @@ export default class LoginPageEN extends Component {
     );
   }
 }
+const styles = StyleSheet.create({
+  textbox: {
+    height: 40, 
+    borderColor: 'gray', 
+    borderWidth: 1,
+    borderRadius: 7,
+    padding: 10,
+    marginTop: 25,
+    marginLeft: 25,
+    marginRight: 25
+  },
+  button: {
+    alignItems: "center",
+    backgroundColor: "#4050b5",
+    borderRadius: 7,
+    marginTop: 40,
+    marginLeft: 25,
+    marginRight: 25
+  },
+});

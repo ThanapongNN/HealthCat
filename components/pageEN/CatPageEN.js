@@ -31,9 +31,9 @@ export default class CatPageEN extends Component {
     return (
       <Container><StatusBar hidden />
         <Header>
-          <Body>
+          <Left>
             <Title>Cat</Title>
-          </Body>
+          </Left>
           <Right>
             <Button transparent onPress={() => Actions.reset("catTH")}><Text>EN</Text></Button>
           </Right>

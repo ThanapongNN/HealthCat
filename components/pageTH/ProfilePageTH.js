@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { ListView,StatusBar } from 'react-native';
+import { ListView,StatusBar,Alert } from 'react-native';
 import { Container,Header,Content,Footer,FooterTab,Button,Icon,Body,Right,Left,Title,Card,CardItem,Text } from 'native-base';
 import { Actions } from 'react-native-router-flux';
-
 import axios from 'axios';
 
 export default class ProfilePageTH extends Component {
@@ -24,14 +23,24 @@ export default class ProfilePageTH extends Component {
         console.log(err);
       });
   }
-  
+  showAlert = () =>{
+    Alert.alert(
+      'ยืนยันออกระบบ',
+      '',
+      [
+        {text: 'ไม่',style: 'cancel',},
+        {text: 'ใช่', onPress: () => Actions.reset("loginTH")}
+      ],
+      {cancelable: false},
+    );
+  }
   render() {
     return (
       <Container><StatusBar hidden />
         <Header>
-          <Body>
+          <Left>
             <Title>ข้อมูลส่วนตัว</Title>
-          </Body>
+          </Left>
           <Right>
             <Button transparent onPress={() => Actions.reset("profileEN")}><Text>ไทย</Text></Button>
           </Right>
@@ -42,9 +51,9 @@ export default class ProfilePageTH extends Component {
               <Card transparent key={index}>
                 <Body>
                   <CardItem header>
-                    <Text>{row.name}</Text>
-                    <Button transparent onPress={() => Actions.reset("loginTH")}>
-                      <Icon active name="ios-exit"/>
+                    <Icon active name="md-contact" /><Text>{row.name}</Text>
+                    <Button transparent onPress={() => this.showAlert()}>
+                      <Icon active name="ios-log-out"/>
                     </Button>
                   </CardItem>
                 </Body>

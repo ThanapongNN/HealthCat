@@ -9,11 +9,11 @@ export default class TipsPageTH extends Component {
     return (
       <Container><StatusBar hidden />
         <Header>
-          <Body>
+          <Left>
             <Title>เคล็ดลับ</Title>
-          </Body>
+          </Left>
           <Right>
-            <Button transparent onPress={() => Actions.tipsEN()}><Text>ไทย</Text></Button>
+            <Button transparent onPress={() => Actions.reset("tipsEN")}><Text>ไทย</Text></Button>
           </Right>
         </Header>
         <Content>
