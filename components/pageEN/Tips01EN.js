@@ -6,7 +6,7 @@ export default class Tips01EN extends Component {
 
   render() {
     return (
-      <Container><StatusBar hidden />
+      <Container>
         <Header>
           <Body>
             <Title>Characteristics of cats and species of cats</Title>

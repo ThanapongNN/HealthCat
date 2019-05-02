@@ -6,7 +6,7 @@ export default class Tips01TH extends Component {
 
   render() {
     return (
-      <Container><StatusBar hidden />
+      <Container>
         <Header>
           <Body>
             <Title>ลักษณะของแมวและสายพันธุ์ของแมว</Title>

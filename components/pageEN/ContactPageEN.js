@@ -7,7 +7,7 @@ export default class ContactPageEN extends Component {
 
   render() {
     return (
-      <Container><StatusBar hidden />
+      <Container>
         <Header>
           <Left>
             <Title>Contact</Title>
@@ -22,13 +22,13 @@ export default class ContactPageEN extends Component {
               <Text>Department of Computer Education</Text>
             </CardItem>
             <CardItem>
-              <Text><Icon name="ios-call" />    02-913-2500 Ext.3234</Text>
+              <Icon name="ios-call"/><Text>02-913-2500 Ext.3234</Text>
             </CardItem>
             <CardItem>
-              <Text><Icon name="ios-mail" />    Email:administrator@ced.kmutnb.ac.th</Text>
+              <Icon name="ios-mail"/><Text>Email:administrator@ced.kmutnb.ac.th</Text>
             </CardItem>
             <CardItem >
-              <Text><Icon name="ios-pin"/>    1518 Pracharat 1Rd. Wongsawang Bang Sue Bangkok 10800</Text>
+              <Icon name="ios-pin"/><Text>1518 Pracharat 1Rd. Wongsawang Bang Sue Bangkok 10800</Text>
             </CardItem>
           </Card>
         </Content>

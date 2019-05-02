@@ -7,7 +7,7 @@ export default class TipsPageEN extends Component {
 
   render() {
     return (
-      <Container><StatusBar hidden />
+      <Container>
         <Header>
           <Left>
             <Title>Tips</Title>

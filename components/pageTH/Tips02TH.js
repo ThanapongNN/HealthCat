@@ -6,7 +6,7 @@ export default class Tips02TH extends Component {
 
   render() {
     return (
-      <Container><StatusBar hidden />
+      <Container>
         <Header>
           <Body>
             <Title>พฤติกรรมการขับถ่ายของแมว</Title>

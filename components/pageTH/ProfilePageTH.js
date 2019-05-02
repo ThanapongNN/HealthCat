@@ -1,15 +1,33 @@
 import React, { Component } from 'react';
-import { ListView,StatusBar,Alert } from 'react-native';
-import { Container,Header,Content,Footer,FooterTab,Button,Icon,Body,Right,Left,Title,Card,CardItem,Text } from 'native-base';
+import { ListView,StatusBar,Alert,Image } from 'react-native';
+import { Container,Header,Content,Footer,FooterTab,Button,Icon,Body,Right,Left,Title,Card,CardItem,Text,Thumbnail } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import { ImagePicker, Permissions } from 'expo';
 import axios from 'axios';
 
 export default class ProfilePageTH extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { user: [] };
+    this.state = { user: [], image: '<null>'  };
   }
+
+  selectPicture = async () => {
+    await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    const { cancelled, uri } = await ImagePicker.launchImageLibraryAsync({
+      aspect: 1,
+      allowsEditing: true,
+    });
+    if (!cancelled) this.setState({ image: uri });
+  };
+
+  takePicture = async () => {
+    await Permissions.askAsync(Permissions.CAMERA);
+    const { cancelled, uri } = await ImagePicker.launchCameraAsync({
+      allowsEditing: false,
+    });
+    this.setState({ image: uri });
+  };
 
   componentWillMount() {
     axios
@@ -23,7 +41,7 @@ export default class ProfilePageTH extends Component {
         console.log(err);
       });
   }
-  showAlert = () =>{
+  showLogout = () =>{
     Alert.alert(
       'ยืนยันออกระบบ',
       '',
@@ -34,9 +52,22 @@ export default class ProfilePageTH extends Component {
       {cancelable: false},
     );
   }
+  showImagePicker = () =>{
+    Alert.alert(
+      'เลือก',
+      '',
+      [
+        {text: 'อัลบั้มรูป', onPress: () => this.selectPicture()},
+        {text: 'กล้อง', onPress: () => this.takePicture()},
+        {text: 'ยกเลิก',style: 'cancel',},
+      ],
+      {cancelable: false},
+    );
+  }
+
   render() {
     return (
-      <Container><StatusBar hidden />
+      <Container>
         <Header>
           <Left>
             <Title>ข้อมูลส่วนตัว</Title>
@@ -48,29 +79,40 @@ export default class ProfilePageTH extends Component {
         <Content>
           {this.state.user.map((row, index) => {
             return (
-              <Card transparent key={index}>
+              <Card key={index}>
                 <Body>
-                  <CardItem header>
-                    <Icon active name="md-contact" /><Text>{row.name}</Text>
-                    <Button transparent onPress={() => this.showAlert()}>
-                      <Icon active name="ios-log-out"/>
+                  <CardItem>
+                    <Button transparent style={{paddingVertical: 30,width: 200,height: 200,borderRadius: 100,}} onPress={this.showImagePicker}>
+                    <Image 
+                      style={{paddingVertical: 30,width: 200,height: 200,borderRadius: 100, backgroundColor: 'gray' }} 
+                      source={{ uri: this.state.image }}
+                    />
                     </Button>
                   </CardItem>
                 </Body>
-
                 <CardItem>
                   <Body>
                     <CardItem>
-                      <Text><Icon name="ios-mail"/>    {row.email}</Text>
+                      <Icon active name="md-contact"/><Text>{row.name}</Text>
                     </CardItem>
                     <CardItem>
-                      <Text><Icon name="ios-pin"/>      {row.address}</Text>
+                      <Icon name="ios-mail"/><Text>{row.email}</Text>
                     </CardItem>
                     <CardItem>
-                      <Text><Icon name="md-call"/>     {row.tel}</Text>
+                      <Icon name="ios-pin"/><Text>{row.address}</Text>
+                    </CardItem>
+                    <CardItem>
+                      <Icon name="md-call"/><Text>{row.tel}</Text>
                     </CardItem>
                   </Body>
                 </CardItem>
+                <Left>
+                  <CardItem>
+                    <Button transparent onPress={() => this.showLogout()}>
+                      <Icon active name="ios-log-out"/>
+                    </Button>
+                  </CardItem>
+                </Left>
               </Card>
             );
           })}
@@ -85,10 +127,6 @@ export default class ProfilePageTH extends Component {
               <Icon name="logo-octocat" />
               <Text style={{fontSize: 10}}>แมว</Text>
             </Button>
-            {/* <Button vertical onPress={() => Actions.reset("vaccineTH")}>
-              <Icon name="book" />
-              <Text style={{fontSize: 10}}>วัคซีน</Text>
-            </Button> */}
             <Button vertical onPress={() => Actions.reset("tipsTH")}>
               <Icon name="md-bulb" />
               <Text style={{fontSize: 10}}>เคล็ดลับ</Text>

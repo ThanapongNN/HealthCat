@@ -28,8 +28,8 @@ import ContactPageTH from './components/pageTH/ContactPageTH';
 const Routes = () => (
    <Router>
       <Scene key = "root">
-         <Scene key = "loginEN" component = {LoginPageEN} initial = {true} hideNavBar={ true }/>
-         <Scene key = "profileEN" component = {ProfilePageEN} hideNavBar={ true }/>
+         <Scene key = "loginEN" component = {LoginPageEN}  hideNavBar={ true }/>
+         <Scene key = "profileEN" component = {ProfilePageEN} initial = {true} hideNavBar={ true }/>
          <Scene key = "catEN" component = {CatPageEN} hideNavBar={ true }/>
          <Scene key = "vaccineEN" component = {VaccinePageEN} hideNavBar={ true }/>
          <Scene key = "addvaccineEN" component = {AddVaccinePageEN} hideNavBar={ true }/>

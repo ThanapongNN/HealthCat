@@ -11,7 +11,6 @@ export default class LoginPageEN extends Component {
     this.state = {
       Username: "",
       Password: "",
-      id: []
     };
   }
 
@@ -43,7 +42,7 @@ export default class LoginPageEN extends Component {
   
   render() {
     return (
-      <View style={{ flex: 1, flexDirection: "column"}}><StatusBar hidden />
+      <View style={{ flex: 1, flexDirection: "column"}}>
         <View style={{alignItems: 'flex-end',backgroundColor: "#4050b5"}}>
           <Text style={{color: "white", fontSize: 15,paddingRight: 15,paddingTop: 15, }} onPress={() => Actions.reset("loginTH")}>EN</Text>
         </View>

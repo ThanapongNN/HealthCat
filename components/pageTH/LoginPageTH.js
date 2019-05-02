@@ -41,7 +41,7 @@ export default class LoginPageTH extends Component {
   
   render() {
     return (
-      <View style={{ flex: 1, flexDirection: "column" }}><StatusBar hidden />
+      <View style={{ flex: 1, flexDirection: "column" }}>
         <View style={{alignItems: 'flex-end',backgroundColor: "#4050b5"}}>
           <Text style={{color: "white", fontSize: 15,paddingRight: 15,paddingTop: 15, }} onPress={() => Actions.reset("loginEN")}>ไทย</Text>
         </View>
@@ -51,13 +51,13 @@ export default class LoginPageTH extends Component {
         <View style={{ width: "100%", height: "100%", backgroundColor: "white" }}>
           <View style={{width: '100%' }}>
             <TextInput style={styles.textbox}
-              placeholder=" ชื่อผู้ใช้" onChangeText={(Username) => this.setState({Username})}
+              placeholder="ชื่อผู้ใช้" onChangeText={(Username) => this.setState({Username})}
               value={this.state.Username}
             />
           </View>
           <View style={{width: '100%' }}>
             <TextInput secureTextEntry={true} style={styles.textbox}
-              placeholder=" รหัสผ่าน" onChangeText={(Password) => this.setState({Password})}
+              placeholder="รหัสผ่าน" onChangeText={(Password) => this.setState({Password})}
               value={this.state.Password}
             />
           </View>

@@ -7,7 +7,7 @@ export default class TipsPageTH extends Component {
 
   render() {
     return (
-      <Container><StatusBar hidden />
+      <Container>
         <Header>
           <Left>
             <Title>เคล็ดลับ</Title>

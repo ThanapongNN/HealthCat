@@ -6,7 +6,7 @@ export default class Tips03TH extends Component {
 
   render() {
     return (
-      <Container><StatusBar hidden />
+      <Container>
         <Header>
           <Body>
             <Title>การฉีดวัคซีนแมว</Title>
@@ -16,7 +16,7 @@ export default class Tips03TH extends Component {
             <Card transparent>
               <Body>
                 <CardItem>
-                    <Image source={require('../../img/swiper-3.jpg')} style={{height: 200, width: 400}}/>
+                    <Image source={require('../../img/swiper-3.jpg')} style={{ height: 200, width: 400 }}/>
                 </CardItem>
               </Body>
               <CardItem>
@@ -24,7 +24,7 @@ export default class Tips03TH extends Component {
               </CardItem>
               <Body>
                 <CardItem>
-                  <Image source={require('../../img/program-TH.png')} style={{ height: 500, width: 300 }}/>
+                  <Image source={require('../../img/program-TH.png')} style={{ height: 420, width: '100%' }}/>
                 </CardItem>
               </Body>
             </Card>

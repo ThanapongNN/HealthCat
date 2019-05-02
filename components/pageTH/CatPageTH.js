@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar,Image,Alert } from 'react-native';
 import { Container, Header, Content, Button, Icon, List, ListItem, Text, Footer, FooterTab, Body, Title,Thumbnail,Left,Right,Card,CardItem } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import { ImagePicker, Permissions } from 'expo';
 import moment from 'moment';
 import axios from 'axios';
 
@@ -10,9 +11,27 @@ export default class CatPageTH extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataCollar: []
+      dataCollar: [],
+      image: '<null>'
     };
   }
+
+  selectPicture = async () => {
+    await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    const { cancelled, uri } = await ImagePicker.launchImageLibraryAsync({
+      aspect: 1,
+      allowsEditing: true,
+    });
+    if (!cancelled) this.setState({ image: uri });
+  };
+
+  takePicture = async () => {
+    await Permissions.askAsync(Permissions.CAMERA);
+    const { cancelled, uri } = await ImagePicker.launchCameraAsync({
+      allowsEditing: false,
+    });
+    this.setState({ image: uri });
+  };
 
   componentWillMount() {
     axios
@@ -26,10 +45,22 @@ export default class CatPageTH extends Component {
         console.log(err);
       });
   }
-  
+  showImagePicker = () =>{
+    Alert.alert(
+      'Select',
+      '',
+      [
+        {text: 'Gallery', onPress: () => this.selectPicture()},
+        {text: 'Camera', onPress: () => this.takePicture()},
+        {text: 'Cancel',style: 'cancel',},
+      ],
+      {cancelable: false},
+    );
+  }
+
   render() {
     return (
-      <Container><StatusBar hidden />
+      <Container>
         <Header>
           <Left>
             <Title>ข้อมูลแมว</Title>
@@ -41,21 +72,24 @@ export default class CatPageTH extends Component {
         <Content>
         {this.state.dataCollar.map((row, index) => {
           return (
-            <Card key={index}>
-              <Body>
-                <CardItem header>
-                    <Text><Icon active name="logo-octocat" />  {row.cat_name}</Text>
-                </CardItem>
-              </Body>
-                <CardItem>
-                  <Body>
-                    <Text note numberOfLines={1}>สี : {row.cat_color}</Text>
-                    <Text note numberOfLines={2}>สายพันธุ์ : {row.cat_species}</Text>
-                    <Text note numberOfLines={3}>ขับถ่ายเมื่อ : {moment(moment.unix(row.last_time)).format("DD-MM-YYYY")}</Text>
-                    <Text note numberOfLines={4}>ฉีดวัคซีนเเมื่อ : {moment(moment.unix(row.cat_vaccine)).format("DD-MM-YYYY")}</Text>
-                  </Body>
-                </CardItem>
-            </Card>
+            <List key={index}>
+              <ListItem avatar>
+                <Left>
+                  <Button transparent style={{width: 60,height: 60,borderRadius: 30,}} onPress={this.showImagePicker}>
+                  <Image 
+                    style={{width: 60,height: 60,borderRadius: 30, backgroundColor: 'gray' }} 
+                    source={{ uri: this.state.image }}
+                  />
+                  </Button>
+                </Left>
+                <Body>
+                  <Text>ชื่อ : {row.cat_name}</Text>
+                  <Text note>สี : {row.cat_color}</Text>
+                  <Text note>สายพันธุ์ : {row.cat_species}</Text>
+                  <Text>เข้าห้องน้ำ : {moment(moment.unix(row.last_time)).format("D MMMM YYYY, hh:mm A")}</Text>
+                </Body>
+              </ListItem>
+            </List>
           );
         })}
         </Content>
@@ -69,10 +103,6 @@ export default class CatPageTH extends Component {
               <Icon active name="logo-octocat" />
               <Text style={{fontSize: 10}}>แมว</Text>
             </Button>
-            {/* <Button vertical onPress={() => Actions.reset("vaccineTH")}>
-              <Icon name="book" />
-              <Text style={{fontSize: 10}}>วัคซีน</Text>
-            </Button> */}
             <Button vertical onPress={() => Actions.reset("tipsTH")}>
               <Icon name="md-bulb" />
               <Text style={{fontSize: 10}}>เคล็ดลับ</Text>
